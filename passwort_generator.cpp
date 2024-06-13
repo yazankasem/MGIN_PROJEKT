@@ -31,3 +31,35 @@ std::string generatePassword(int length, bool useNumbers, bool useLetters, bool 
 
     return password;
 }
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+
+    int length;
+    char useNumbers, useLetters, useSpecialChars;
+
+    std::cout << "Password Length: ";
+    std::cin >> length;
+
+    std::cout << "Include Numbers? (y/n): ";
+    std::cin >> useNumbers;
+
+    std::cout << "Include Letters? (y/n): ";
+    std::cin >> useLetters;
+    
+    std::cout << "Include Special Characters? (y/n): ";
+    std::cin >> useSpecialChars;
+
+    bool includeNumbers = (useNumbers == 'y' || useNumbers == 'Y');
+    bool includeLetters = (useLetters == 'y' || useLetters == 'Y');
+    bool includeSpecialChars = (useSpecialChars == 'y' || useSpecialChars == 'Y');
+
+    std::string password = generatePassword(length, includeNumbers, includeLetters, includeSpecialChars);
+
+    if (!password.empty()) {
+        std::cout << "Generated Password: " << password << std::endl;
+    } else {
+        std::cerr << "Error: Unable to generate password." << std::endl;
+    }
+
+    return 0;
+}
